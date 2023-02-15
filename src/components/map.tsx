@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import maplibregl from 'maplibre-gl';
+import maplibregl, { NavigationControl } from 'maplibre-gl';
 import './map.css';
 
 
@@ -21,9 +21,11 @@ export default function Map() {
             center: [lng, lat],
             zoom: zoom
         });
-        map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
+        map.current.addControl(new maplibregl.NavigationControl({
+            showCompass: true
+        }), 'top-left');
 
-    });
+    },[]);
     return (
         <div className="map-wrap">
             <div ref={mapContainer} className="map" />
